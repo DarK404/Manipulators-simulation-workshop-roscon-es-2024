@@ -1,1 +1,1 @@
-# manipulators-simulation-workshop-roscon-es-2024
+# Manipulators-simulation-workshop-roscon-es-2024
