@@ -160,9 +160,9 @@ EXPOSE 47995-48012/udp \
        8891/tcp
 
 ENV OMNI_SERVER http://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/${ISAAC_SIM_VERSION}
-# ENV OMNI_SERVER omniverse://localhost/NVIDIA/Assets/Isaac/2022.1
-# ENV OMNI_USER admin
-# ENV OMNI_PASS admin
+ENV OMNI_SERVER omniverse://localhost/NVIDIA/Assets/Isaac/2022.1
+ENV OMNI_USER admin
+ENV OMNI_PASS admin
 ENV MIN_DRIVER_VERSION 525.60.11
 
 # Copy Isaac Sim files

@@ -4,6 +4,7 @@ SHELL ["/bin/bash", "-c", "-o", "pipefail"]
 
 ARG CUDA_MAJOR_VERSION=11
 ARG CUDA_MINOR_VERSION=7
+ARG USE_LOCAL=false
 
 RUN echo "deb [trusted=yes] https://raw.githubusercontent.com/moveit/moveit2_packages/jammy-humble/ ./" \
     | sudo tee /etc/apt/sources.list.d/moveit_moveit2_packages.list
@@ -22,8 +23,20 @@ RUN apt-get install -y --no-install-recommends \
 RUN mkdir -p /root/isaac_moveit_tutorial_ws/src
 WORKDIR /root/isaac_moveit_tutorial_ws/src
 
-COPY UR_Isaac-sim /root/isaac_moveit_tutorial_ws/src/UR_Isaac-sim
-COPY zimmer_gripper /root/isaac_moveit_tutorial_ws/src/zimmer_gripper
+COPY /Docker/common_files /tmp/common_files
+
+
+# Conditionally copy files or clone repositories
+RUN if [ "$USE_LOCAL" = "true" ]; then \
+    cp -r /tmp/common_files/UR_Isaac-sim /root/isaac_moveit_tutorial_ws/src/UR_Isaac-sim; \
+    cp -r /tmp/common_files/zimmer_gripper /root/isaac_moveit_tutorial_ws/src/zimmer_gripper; \
+    else \
+        git clone https://github.com/DarK404/UR_Isaac-sim.git && \
+        git clone https://github.com/Dark404/robotiq_85_gripper.git; \
+    fi
+
+# COPY UR_Isaac-sim /root/isaac_moveit_tutorial_ws/src/UR_Isaac-sim
+# COPY zimmer_gripper /root/isaac_moveit_tutorial_ws/src/zimmer_gripper
 
 #RUN git clone https://github.com/DarK404/UR_Isaac-sim .\
 #    && git clone https://github.com/Dark404/robotiq_85_gripper.git \
