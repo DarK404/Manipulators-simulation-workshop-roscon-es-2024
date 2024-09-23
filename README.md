@@ -29,12 +29,18 @@ docker run --rm --gpus all nvidia/cuda:11.2.2-base-ubuntu20.04 nvidia-smi
    docker login nvcr.io
    Username: $oauthtoken
    Password: [Your NGC API Key]
-2.**Clone the Workshop Repository:**
+2. **Install and configure your omniverse Nucleus user:**
+   
+   Ensure that you have [Omniverse Launcher](https://www.nvidia.com/es-es/omniverse/download/) installed
+   
+   After installing Omniverse Launcher, configure your local [Nucleus Server](https://docs.omniverse.nvidia.com/nucleus/latest/workstation/installation.html)
+
+3. **Clone the Workshop Repository:**
 ```bash
 git clone https://github.com/DarK404/Manipulators-simulation-workshop-roscon-es-2024.git
 cd Manipulators-simulation-workshop-roscon-es-2024/Docker
 ```
-3.**Build the Docker Image:**
+4. **Build the Docker Image:**
 
 Run the provided script to set up the environment and build the Docker images:
 ```bash
@@ -44,7 +50,7 @@ Then, build the required services:
 ```bash
 docker compose build demo_isaac demo_isaac_zimmer
 ```
-4. **Run the Docker Containers:**
+5. **Run the Docker Containers:**
 
 Enable GUI visualization on your host machine:
 ```bash
@@ -53,26 +59,29 @@ xhost + # this will enable gui visualization
 Start the Isaac Sim container:
 
 ```bash
-#Terminal 1
 bash start_docker.sh isaac_sim_2023.1.0
 cd examples/code/
 ```
-5. **Running the Demos:**
+## Running the Demos
 
-To Run Isaa_moveit.py :
+To Run Isaac_moveit.py, execute the following command inside the Docker terminal
 ```bash
-#Terminal1
+# Isaac Sim Docker Terminal
 $omni_python isaac_moveit.py
-
-#Terminal 2
+```
+In your computer, open a second terminal and execute 
+```bash
+cd Manipulators-simulation-workshop-roscon-es-2024/Docker
 docker compose up demo_isaac
 ```
-To Run the simple_stacking_ur.py :
+To Run the simple_stacking_ur.py, execute the following command inside the Docker terminal
 ```bash
-#Terminal1
+# Isaac Sim Docker Terminal
 $omni_python simple_stacking_ur.py
-
-#Terminal 2
+```
+In your computer, open a second terminal and execute 
+```bash
+cd Manipulators-simulation-workshop-roscon-es-2024/Docker
 docker compose up demo_isaac_zimmer
 ```
 
