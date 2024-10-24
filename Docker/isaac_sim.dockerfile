@@ -24,7 +24,7 @@ FROM nvcr.io/nvidia/cudagl:${CUDA_VERSION}-devel-${BASE_DIST}
 
 LABEL maintainer "User Name"
 
-ARG VULKAN_SDK_VERSION=1.3.224.1
+ARG VULKAN_SDK_VERSION=1.3.250.1
 
 
 
