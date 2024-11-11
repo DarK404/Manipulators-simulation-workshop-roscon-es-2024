@@ -50,7 +50,7 @@ WORKDIR /root/isaac_moveit_tutorial_ws/src
 RUN git clone https://github.com/ros-planning/moveit_resources.git -b humble
 
 WORKDIR /root/isaac_moveit_tutorial_ws/src
-RUN git clone https://github.com/DarK404/moveit2_tutorials.git
+#RUN git clone https://github.com/DarK404/moveit2_tutorials.git
 WORKDIR /root/isaac_moveit_tutorial_ws
 # hadolint ignore=SC1091
 RUN source /opt/ros/humble/setup.bash \
